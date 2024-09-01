@@ -1,10 +1,9 @@
 FROM node:14
 
-
-USER node
-
 WORKDIR /app
 
+
+USER root
 RUN npm config set unsafe-perm true
 
 COPY package*.json ./
