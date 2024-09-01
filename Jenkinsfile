@@ -21,12 +21,12 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 script {
-                    // Create and set permissions for npm cache directory
+                    
                     sh '''
                         mkdir -p /home/node/.npm
                         chown -R $(id -u):$(id -g) /home/node/.npm
-                        npm config set cache /home/node/.npm --global
-                        npm install
+                        npm config set cache /home/node/.npm --global --unsafe-perm
+                        npm install --unsafe-perm
                     '''
                 }
             }
