@@ -1,6 +1,5 @@
 FROM node:14
 
-
 RUN useradd -ms /bin/sh -u 1001 appuser
 
 WORKDIR /app
