@@ -25,7 +25,7 @@ pipeline {
                     sh '''
                         set -x
                         mkdir -p /home/node/.npm
-                        chown -R 1000:1000 /home/node/.npm
+                        chown -R 111:111 /home/node/.npm
                         npm config set cache /home/node/.npm --userconfig /home/node/.npmrc --unsafe-perm
                         npm install
                     '''
