@@ -1,5 +1,6 @@
 FROM node:14
 
+USER root
 RUN mkdir -p /home/node/.npm && \
     chown -R node:node /home/node/.npm
 
