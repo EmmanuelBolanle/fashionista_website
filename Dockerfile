@@ -1,17 +1,17 @@
 FROM node:14
 
-RUN groupadd -g 111 mygroup && \
-    useradd -r -u 111 -g mygroup myuser && \
-    mkdir -p /home/myuser/.npm && \
-    chown -R myuser:mygroup /home/myuser
+USER root
 
-USER myuser
+RUN mkdir -p /home/node/.npm && \
+    chown -R node:node /home/node/.npm
+
+USER node
 
 WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm config set cache /home/myuser/.npm --unsafe-perm && npm install
+RUN npm config set cache /home/node/.npm --unsafe-perm && npm install
 
 COPY . .
 
