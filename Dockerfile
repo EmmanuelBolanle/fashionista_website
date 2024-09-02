@@ -4,10 +4,8 @@ WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm config set cache /tmp/npm-cache --global && \
-    npm config set userconfig /tmp/.npmrc --global
-
-RUN npm install --unsafe-perm
+RUN npm config set cache /home/node/.npm --unsafe-perm \
+    && npm install
 
 COPY . .
 

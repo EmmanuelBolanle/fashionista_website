@@ -18,20 +18,22 @@ pipeline {
             }
         }
 
+     stages {
         stage('Install Dependencies') {
             steps {
                 script {
-                    
+
                     sh '''
                         set -x
                         mkdir -p /home/node/.npm
                         chown -R 111:111 /home/node/.npm
-                        npm config set cache /home/node/.npm --userconfig /home/node/.npmr --unsafe-perm
+                        npm config set cache /home/node/.npm --userconfig /home/node/.npmrc --unsafe-perm
                         npm install
                     '''
                 }
             }
         }
+
 
         stage('Build Docker Image') {
             steps {
