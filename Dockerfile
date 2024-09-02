@@ -1,19 +1,13 @@
 FROM node:14
 
 USER root
+RUN mkdir -p /home/node/.npm && chown -R node:node /home/node/.npm
 
-RUN groupadd -r jenkins && useradd -r -g jenkins jenkins
-
-RUN npm config set unsafe-perm true
+USER node
 
 WORKDIR /app
-
 COPY package*.json ./
-RUN npm install
+RUN npm config set cache /home/node/.npm --unsafe-perm && npm install
 
 COPY . .
-
-USER jenkins
-
-CMD ["node", "app.js"]
 
